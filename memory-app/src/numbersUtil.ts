@@ -10,10 +10,31 @@ export const getPairedNumbers = (n: number): number[] => {
     const uniqueArr = Array.from(uniqueNumbers);
     // Duplicate each number to form pairs
     const pairedNumbers = [...uniqueArr, ...uniqueArr];
-    // Shuffle the array
-    for (let i = pairedNumbers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [pairedNumbers[i], pairedNumbers[j]] = [pairedNumbers[j], pairedNumbers[i]];
+    // Improved shuffle: avoid placing pairs consecutively
+    let shuffled: number[] = [];
+    let attempts = 0;
+    const maxAttempts = 1000;
+    while (attempts < maxAttempts) {
+        // Fisher-Yates shuffle
+        const arr = pairedNumbers.slice();
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        // Check for adjacent pairs
+        let hasAdjacent = false;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] === arr[i - 1]) {
+                hasAdjacent = true;
+                break;
+            }
+        }
+        if (!hasAdjacent) {
+            shuffled = arr;
+            break;
+        }
+        attempts++;
     }
-    return pairedNumbers;
+    // If unable to avoid adjacent pairs, fallback to original shuffle
+    return shuffled.length ? shuffled : pairedNumbers;
 };
