@@ -1,9 +1,11 @@
 export const getUniqueColors = (count: number): string[] => {
-    const colors: Set<string> = new Set();
-    while (colors.size < count) {
-        // Generate a random hex color
-        const color = '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
-        colors.add(color);
+    // Generate pastel colors using HSL, evenly spaced hues for complimentary effect
+    const pastelColors: string[] = [];
+    const saturation = 70; // pastel saturation
+    const lightness = 85; // pastel lightness
+    for (let i = 0; i < count; i++) {
+        const hue = Math.round((360 / count) * i);
+        pastelColors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
     }
-    return Array.from(colors);
+    return pastelColors;
 }

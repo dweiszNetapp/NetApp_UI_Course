@@ -31,6 +31,17 @@ body {
           padding: 0;
         }
       }
+
+      .youWon {
+        display: flex;
+        align-items: center;
+        font-size: 45px;
+        color: green;
+      }
+    }
+
+    .resetButton {
+      cursor: pointer;
     }
   }
 
@@ -52,7 +63,9 @@ body {
       position: relative;
       cursor: pointer;
 
-      &:hover {
+      &.visible {
+        pointer-events: none;
+
         .tileShutter {
           height: 0;
         }
