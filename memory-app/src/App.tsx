@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.scss';
 import { getUniqueColors } from './colorUtil';
 import { getPairedNumbers } from './numbersUtil';
+import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
 
 interface Tile {
   value: number,
@@ -80,7 +81,7 @@ function App() {
     <div className='memoryAppContainer'>
       <div className="memoryTitleBar">
         <div className='leftSection'>
-          <div>Memory app</div>
+          <MemoryIcon />
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Difficulty level:</div>
             <input type='number' min={4} max={100} step={2} className='difficultyLevel' value={numberOfTiles} onChange={event => handleDifficultyChange(event.target.value)} />

@@ -14,9 +14,10 @@ body {
     display: flex;
     width: 100%;
     border-bottom: 1px solid gray;
-    padding: 30px;
+    padding: 10px 30px;
     box-sizing: border-box;
     justify-content: space-between;
+    align-items: center;
 
     .leftSection {
       display: flex;
@@ -43,6 +44,7 @@ body {
 
     .resetButton {
       cursor: pointer;
+      height: 40px;
     }
   }
 
