@@ -1,6 +1,23 @@
+import { useEffect, useState } from 'react';
 import './App.scss';
+import { getUniqueColors } from './colorUtil';
+import { getPairedNumbers } from './numbersUtil';
+
+interface Tile {
+  value: number;
+  color: string;
+}
 
 function App() {
+  const [numberOfTiles, setNumberOfTiles] = useState(4);
+  const [tiles, setTiles] = useState<Tile[]>();
+
+  useEffect(() => {
+    const colors = getUniqueColors(numberOfTiles);
+    const values = getPairedNumbers(numberOfTiles);
+    const tiles = colors.map<Tile>((color, index) => ({ value: values[index], color }));
+    setTiles(tiles);
+  }, [numberOfTiles]);
 
   return (
     <div className='memoryAppContainer'>
@@ -9,7 +26,7 @@ function App() {
           <div>Memory app</div>
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Difficulty level:</div>
-            <input type='number' className='difficultyLevel' />
+            <input type='number' min={4} step={2} className='difficultyLevel' value={numberOfTiles} onChange={event => setNumberOfTiles(Number(event.target.value))} />
           </div>
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Best score: 100</div>
@@ -19,66 +36,16 @@ function App() {
         <button>Reset game</button>
       </div>
       <div className="memoryMainContent">
-        <div className="memoryTile">
-          <div className="memoryTileContent">1</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">20</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">13</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">4</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">7</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">12</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">55</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">8</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">2</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">9</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">5</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">1</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">33</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">2</div>
-          <div className="tileShutter">?</div>
-        </div>
-        <div className="memoryTile">
-          <div className="memoryTileContent">10</div>
-          <div className="tileShutter">?</div>
-        </div>
+        {tiles?.map((tile, index) => {
+          const { value, color } = tile;
+
+          return (
+            <div className="memoryTile" key={index}>
+              <div className="memoryTileContent">{value}</div>
+              <div className="tileShutter" style={{ backgroundColor: color }}>?</div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
