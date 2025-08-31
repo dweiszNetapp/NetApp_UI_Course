@@ -83,7 +83,7 @@ function App() {
           <div>Memory app</div>
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Difficulty level:</div>
-            <input type='number' min={4} step={2} className='difficultyLevel' value={numberOfTiles} onChange={event => handleDifficultyChange(event.target.value)} />
+            <input type='number' min={4} max={100} step={2} className='difficultyLevel' value={numberOfTiles} onChange={event => handleDifficultyChange(event.target.value)} />
           </div>
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Best score: {bestResult || 'N/A'}</div>
