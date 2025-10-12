@@ -1,4 +1,5 @@
 import './App.scss';
+import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className='memoryAppContainer'>
       <div className="memoryTitleBar">
         <div className='leftSection'>
-          <MemoryIcon />
+          <MemoryIcon className='memoryIcon' />
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Difficulty level:</div>
             <input type='number' min={4} max={100} step={2} className='difficultyLevel' />

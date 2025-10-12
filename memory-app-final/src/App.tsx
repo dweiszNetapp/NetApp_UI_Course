@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
+import './App-vp.scss';
 import { getUniqueColors } from './colorUtil';
 import { getPairedNumbers } from './numbersUtil';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
@@ -81,7 +82,7 @@ function App() {
     <div className='memoryAppContainer'>
       <div className="memoryTitleBar">
         <div className='leftSection'>
-          <MemoryIcon />
+          <MemoryIcon className='memoryIcon' />
           <div className='leftSectionItem'>
             <div className='sectionTitle'>Difficulty level:</div>
             <input type='number' min={4} max={100} step={2} className='difficultyLevel' value={numberOfTiles} onChange={event => handleDifficultyChange(event.target.value)} />
