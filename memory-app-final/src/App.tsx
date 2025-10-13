@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import './App-vp.scss';
-import { getUniqueColors } from './colorUtil';
-import { getPairedNumbers } from './numbersUtil';
+import { getUniqueColors } from './utils/colorUtil';
+import { getPairedNumbers } from './utils/numbersUtil';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
 
 interface Tile {
@@ -44,7 +44,7 @@ function App() {
     }
   }
 
-  const reset = (isResetBestScor?: boolean) => {
+  const resetGame = (isResetBestScor?: boolean) => {
     setFirstPair(undefined);
     setVisibleIndexes([]);
     setNumMistakes(0);
@@ -62,7 +62,7 @@ function App() {
   const handleDifficultyChange = (value: string) => {
     const newValue = Number(value);
     setNumberOfTiles(newValue);
-    reset();
+    resetGame();
   }
 
   const isAWinner = (): boolean => {
@@ -93,7 +93,7 @@ function App() {
           </div>
           {isAWinner() && <div className='youWon'>YOU WON!</div>}
         </div>
-        <button className='resetButton' onClick={() => reset(true)}>Reset game</button>
+        <button className='resetButton' onClick={() => resetGame(true)}>Reset game</button>
       </div>
       <div className="memoryMainContent">
         {tiles?.map((tile, index) => {

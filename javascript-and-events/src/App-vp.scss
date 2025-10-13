@@ -1,0 +1,29 @@
+// Media query for very small screens (phones in portrait)
+@media (max-width: 650px) {
+    .memoryAppContainer {
+        .memoryTitleBar {
+            padding: 8px 10px;
+            flex-direction: column;
+            gap: 10px;
+
+            .leftSection {
+                width: 100%;
+                justify-content: space-between;
+
+                .memoryIcon {
+                    display: none;
+                }
+            }
+
+            .resetButton {
+                width: 100%;
+            }
+        }
+
+        .memoryMainContent {
+            .memoryTile {
+                width: calc(100% / 2); // Only 2 tiles per row on very small screens
+            }
+        }
+    }
+}
