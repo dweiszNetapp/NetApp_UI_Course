@@ -1,6 +1,7 @@
 import './App.scss';
 import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
+import TileBlock from './tile/tile';
 
 function App() {
   const handleTileClick = (tileId) => {
@@ -20,10 +21,7 @@ function App() {
       const tileId = `tile-${i}`;
 
       tiles.push(
-        <div key={i} className="memoryTile" id={tileId} onClick={() => handleTileClick(tileId)}>
-          <div className="memoryTileContent">1</div>
-          <div className="tileShutter">?</div>
-        </div>
+        <TileBlock key={tileId} id={tileId} handleTileClick={handleTileClick} />
       );
     }
     return tiles;
@@ -51,7 +49,7 @@ function App() {
         </div>
         <button className='resetButton'>Reset game</button>
       </div>
-      <div className="memoryMainContent" id="tileContainer">
+      <div className="memoryMainContent" idddd="tileContainer">
         {generateTiles()}
       </div>
     </div>

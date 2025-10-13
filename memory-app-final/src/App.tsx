@@ -1,33 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.scss';
 import './App-vp.scss';
-import { getUniqueColors } from './utils/colorUtil';
-import { getPairedNumbers } from './utils/numbersUtil';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
-
-interface Tile {
-  value: number,
-  color: string,
-  index: number
-}
+import TileBlock, { type Tile } from './tile/tile';
+import useTiles from './hooks/useTiles';
 
 function App() {
   const [bestResult, setBestResult] = useState<string | null>(localStorage.getItem('memoryAppBestResult'));
-  const [colors, setColors] = useState<string[]>([]);
   const [numberOfTiles, setNumberOfTiles] = useState(4);
-  const [tiles, setTiles] = useState<Tile[]>();
   const [firstPair, setFirstPair] = useState<Tile>();
   const [visibleIndexes, setVisibleIndexes] = useState<number[]>([]);
   const [numMistakes, setNumMistakes] = useState<number>(0);
 
-  useEffect(() => {
-    const colors = getUniqueColors(numberOfTiles);
-    setColors(colors);
-
-    const values = getPairedNumbers(numberOfTiles);
-    const tiles = colors.map<Tile>((color, index) => ({ value: values[index], color, index }));
-    setTiles(tiles);
-  }, [numberOfTiles]);
+  // Using custom hook to manage tiles
+  // Very useful in separating logic from UI
+  const { tiles, resetTiles } = useTiles(numberOfTiles);
 
   const handleTileClick = (tile: Tile) => {
     if (firstPair === undefined) {
@@ -49,9 +36,7 @@ function App() {
     setVisibleIndexes([]);
     setNumMistakes(0);
 
-    const values = getPairedNumbers(numberOfTiles);
-    const tiles = colors.map<Tile>((color, index) => ({ value: values[index], color, index }));
-    setTiles(tiles);
+    resetTiles();
 
     if (isResetBestScor) {
       localStorage.removeItem('memoryAppBestResult');
@@ -97,13 +82,8 @@ function App() {
       </div>
       <div className="memoryMainContent">
         {tiles?.map((tile, index) => {
-          const { value, color } = tile;
-
           return (
-            <div className={`memoryTile ${[...visibleIndexes, firstPair?.index].includes(index) ? 'visible' : ''}`} key={index} onClick={() => handleTileClick(tile)}>
-              <div className="memoryTileContent">{value}</div>
-              <div className="tileShutter" style={{ backgroundColor: color }}>?</div>
-            </div>
+            <TileBlock tile={tile} visibleIndexes={visibleIndexes} firstPairIndex={firstPair?.index} handleTileClick={handleTileClick} key={index} />
           )
         })}
       </div>
