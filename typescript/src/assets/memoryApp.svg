@@ -1,0 +1,7 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="30" width="30" height="40" rx="6" fill="#6C63FF" stroke="#3F3D56" stroke-width="2"/>
+  <rect x="50" y="50" width="30" height="40" rx="6" fill="#00BFA6" stroke="#3F3D56" stroke-width="2"/>
+  <rect x="80" y="30" width="20" height="30" rx="6" fill="#FFD600" stroke="#3F3D56" stroke-width="2"/>
+  <circle cx="60" cy="30" r="10" fill="#3F3D56" opacity="0.15"/>
+  <text x="60" y="110" text-anchor="middle" font-size="20" fill="#3F3D56" font-family="Arial, sans-serif">Memory</text>
+</svg>
