@@ -3,7 +3,7 @@ import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
 
 function App() {
-  const handleTileClick = (tileId: string) => {
+  const handleTileClick = (tileId) => {
     const tile = document.getElementById(tileId);
     if (tile) {
       tile.classList.add('visible');
@@ -29,9 +29,11 @@ function App() {
     return tiles;
   }
 
-  const resetGame = () => {
-    alert('Reset game clicked');
-  }
+  // Task: Implement resetGame function to reset the game state
+  const resetGame = () => { }
+
+  // Task: Implement difficultyLevelChange function to handle changes in difficulty level
+  const difficultyLevelChange = () => { }
 
   return (
     <div className='memoryAppContainer'>
@@ -47,7 +49,7 @@ function App() {
             <div className='numMistakes'>Number of mistakes: 0</div>
           </div>
         </div>
-        <button className='resetButton' onClick={() => resetGame()}>Reset game</button>
+        <button className='resetButton'>Reset game</button>
       </div>
       <div className="memoryMainContent" id="tileContainer">
         {generateTiles()}
