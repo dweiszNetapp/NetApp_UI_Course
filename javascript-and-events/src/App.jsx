@@ -49,7 +49,7 @@ function App() {
         </div>
         <button className='resetButton'>Reset game</button>
       </div>
-      <div className="memoryMainContent" idddd="tileContainer">
+      <div className="memoryMainContent" id="tileContainer">
         {generateTiles()}
       </div>
     </div>

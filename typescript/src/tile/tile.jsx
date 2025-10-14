@@ -1,11 +1,6 @@
 import './tile.scss';
 
-interface TileProps {
-    id: string,
-    handleTileClick: (id: string) => void
-}
-
-const TileBlock = (props: TileProps) => {
+const TileBlock = (props) => {
 
     return (
         <div className="memoryTile" id={props.id} onClick={() => props.handleTileClick(props.id)}>
