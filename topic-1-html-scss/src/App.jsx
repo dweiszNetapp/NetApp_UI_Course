@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.css';
 import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
 
