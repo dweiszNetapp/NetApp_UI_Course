@@ -8,11 +8,14 @@ function App() {
       <div className='momoryTitle'>
         <div className='momoryTitle titleLeftSide'>
           <MemoryIcon className='memoryIcon' />
-          <div>
-            Difficulty level
+          <div className='titleBlck'>
+            <span>Difficulty level</span>
             <input />
           </div>
-          <div>Best score</div>
+          <div className='titleBlck'>
+            <span>Best score</span>
+            <span>Number of mistaks: 0</span>
+          </div>
         </div>
         <button>Reset game</button>
       </div>
