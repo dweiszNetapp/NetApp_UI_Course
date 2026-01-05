@@ -20,7 +20,10 @@ function App() {
         <button>Reset game</button>
       </div>
       <div className='memoryGameContent'>
-        <div className="tile">4</div>
+        <div className="tile">
+          <div className='tileCurten'>?</div>
+          <div>4</div>
+        </div>
         <div className="tile">2</div>
         <div className="tile">12</div>
         <div className="tile">8</div>
