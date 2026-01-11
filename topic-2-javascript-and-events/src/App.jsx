@@ -27,12 +27,6 @@ function App() {
     return tiles;
   }
 
-  // Task: Implement resetGame function to reset the game state
-  const resetGame = () => { }
-
-  // Task: Implement difficultyLevelChange function to handle changes in difficulty level
-  const difficultyLevelChange = () => { }
-
   return (
     <div className='memoryAppContainer'>
       <div className="memoryTitleBar">
