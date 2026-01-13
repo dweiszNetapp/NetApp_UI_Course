@@ -1,2 +1,31 @@
 // Media query for very small screens (phones in portrait)
-@media (max-width: 650px) {}
+@media (max-width: 650px) {
+    .memoryAppContainer {
+        .momoryTitle {
+            flex-direction: column;
+            gap: 20px;
+
+            .momoryTitle {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+
+                .memoryIcon {
+                    display: none;
+                }
+            }
+
+            .resetButton {
+                width: 100%;
+                padding: 10px 0;
+            }
+        }
+
+        .memoryGameContent {
+
+            .tile {
+                width: 50%;
+            }
+        }
+    }
+}

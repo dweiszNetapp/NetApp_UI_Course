@@ -17,17 +17,26 @@ function App() {
             <span>Number of mistaks: 0</span>
           </div>
         </div>
-        <button>Reset game</button>
+        <button className='resetButton'>Reset game</button>
       </div>
       <div className='memoryGameContent'>
         <div className="tile">
           <div className='tileCurten'>?</div>
           <div>4</div>
         </div>
+        <div className="tile">
+          <div className='tileCurten'>?</div>
+          <div>34</div>
+        </div>
         <div className="tile">2</div>
         <div className="tile">12</div>
         <div className="tile">8</div>
         <div className="tile">9</div>
+        <div className="tile last">5</div>
+        <div className="tile last">5</div>
+        <div className="tile last">5</div>
+        <div className="tile last">5</div>
+        <div className="tile last">5</div>
         <div className="tile last">5</div>
       </div>
     </div>
