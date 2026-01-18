@@ -1,31 +1,13 @@
 import './App.scss';
 import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
-import TileBlock from './tile/tile';
 
 function App() {
-  const handleTileClick = (tileId) => {
-    const tile = document.getElementById(tileId);
-    if (tile) {
-      tile.classList.add('visible');
-    }
-  }
 
   /**
-   * Task: Use getPairedNumbers and getUniqueColors to generate tiles dynamically
-   */
-  const generateTiles = () => {
-    const tiles = [];
-
-    for (let i = 0; i < 4; i++) {
-      const tileId = `tile-${i}`;
-
-      tiles.push(
-        <TileBlock key={tileId} id={tileId} handleTileClick={handleTileClick} />
-      );
-    }
-    return tiles;
-  }
+  * Task: Use getPairedNumbers and getUniqueColors to generate tiles dynamically
+  */
+  const generateTiles = () => { }
 
   return (
     <div className='memoryAppContainer'>
@@ -43,8 +25,55 @@ function App() {
         </div>
         <button className='resetButton'>Reset game</button>
       </div>
-      <div className="memoryMainContent" id="tileContainer">
-        {generateTiles()}
+      <div className="memoryMainContent">
+        <div className="memoryTile">
+          <div className="memoryTileContent">3</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">11</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">5</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">11</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">3</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">25</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">5</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">45</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">12</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">45</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">8</div>
+          <div className="tileShutter">?</div>
+        </div>
+        <div className="memoryTile">
+          <div className="memoryTileContent">12</div>
+          <div className="tileShutter">?</div>
+        </div>
       </div>
     </div>
   )

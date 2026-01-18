@@ -4,8 +4,8 @@ const TileBlock = (props) => {
 
     return (
         <div className="memoryTile" id={props.id} onClick={() => props.handleTileClick(props.id)}>
-            <div className="memoryTileContent">1</div>
-            <div className="tileShutter">?</div>
+            <div className="memoryTileContent">{props.value}</div>
+            <div className="tileShutter" style={{ backgroundColor: props.color }}>?</div>
         </div>
     )
 }

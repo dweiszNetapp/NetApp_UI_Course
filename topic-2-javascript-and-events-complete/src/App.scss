@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: Helvetica;
 
   .memoryTitleBar {
     display: flex;
@@ -67,7 +67,9 @@ body {
       position: relative;
       cursor: pointer;
 
-      &:hover {
+      &.visible {
+        pointer-events: none;
+
         .tileShutter {
           height: 0;
         }
