@@ -2,6 +2,8 @@ import './App.scss';
 import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
 import TileBlock from './tileBlock/tileBlock';
+import { getPairedNumbers } from './utils/numbersUtil';
+import { getUniqueColors } from './utils/colorUtil';
 
 function App() {
 
@@ -17,9 +19,16 @@ function App() {
     const difficultyLevel = 8; // Example difficulty level
     const tiles = [];
 
+    const numbers = getPairedNumbers(difficultyLevel);
+    const colors = getUniqueColors(difficultyLevel);
+
     for (let i = 0; i < difficultyLevel; i++) {
-      tiles.push(<TileBlock key={i} onTileClick={(value) => openShutter(value)} id={i}>
-        {i}
+      tiles.push(<TileBlock
+        key={i}
+        onTileClick={(value) => openShutter(value)}
+        id={i}
+        color={colors[i]}>
+        {numbers[i]}
       </TileBlock>);
     }
 
