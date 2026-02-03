@@ -1,37 +1,39 @@
 import './App.scss';
 import './App-vp.scss';
 import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
-import TileBlock from './tile/tile';
+import TileBlock from './tileBlock/tileBlock';
+import { getPairedNumbers } from './utils/numbersUtil';
+import { getUniqueColors } from './utils/colorUtil';
 
 function App() {
-  const handleTileClick = (tileId) => {
-    const tile = document.getElementById(tileId);
-    if (tile) {
-      tile.classList.add('visible');
-    }
+
+  const openShutter = (value: string) => {
+    const tile = document.getElementById(value);
+    tile!.classList.add('opened');
   }
 
   /**
-   * Task: Use getPairedNumbers and getUniqueColors to generate tiles dynamically
-   */
+  * Task: Use getPairedNumbers and getUniqueColors to generate tiles dynamically
+  */
   const generateTiles = () => {
+    const difficultyLevel = 8; // Example difficulty level
     const tiles = [];
 
-    for (let i = 0; i < 4; i++) {
-      const tileId = `tile-${i}`;
+    const numbers = getPairedNumbers(difficultyLevel);
+    const colors = getUniqueColors(difficultyLevel);
 
-      tiles.push(
-        <TileBlock key={tileId} id={tileId} handleTileClick={handleTileClick} />
-      );
+    for (let i = 0; i < difficultyLevel; i++) {
+      tiles.push(<TileBlock
+        key={i}
+        onTileClick={(value) => openShutter(value)}
+        id={i.toString()}
+        color={colors[i]}>
+        <div>{numbers[i]}</div>
+      </TileBlock>);
     }
+
     return tiles;
   }
-
-  // Task: Implement resetGame function to reset the game state
-  const resetGame = () => { }
-
-  // Task: Implement difficultyLevelChange function to handle changes in difficulty level
-  const difficultyLevelChange = () => { }
 
   return (
     <div className='memoryAppContainer'>
@@ -49,7 +51,7 @@ function App() {
         </div>
         <button className='resetButton'>Reset game</button>
       </div>
-      <div className="memoryMainContent" idddd="tileContainer">
+      <div className="memoryMainContent">
         {generateTiles()}
       </div>
     </div>

@@ -1,9 +1,9 @@
-export const getPairedNumbers = (n) => {
+export const getPairedNumbers = (n: number): number[] => {
     if (n % 2 !== 0) {
         throw new Error('Input number must be even to form pairs.');
     }
     // Generate n/2 unique random numbers using a Set
-    const uniqueNumbers = new Set();
+    const uniqueNumbers = new Set<number>();
     while (uniqueNumbers.size < n / 2) {
         uniqueNumbers.add(Math.floor(Math.random() * 100));
     }
@@ -11,7 +11,7 @@ export const getPairedNumbers = (n) => {
     // Duplicate each number to form pairs
     const pairedNumbers = [...uniqueArr, ...uniqueArr];
     // Improved shuffle: avoid placing pairs consecutively
-    let shuffled = [];
+    let shuffled: number[] = [];
     let attempts = 0;
     const maxAttempts = 1000;
     while (attempts < maxAttempts) {

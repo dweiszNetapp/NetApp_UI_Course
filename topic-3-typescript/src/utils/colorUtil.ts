@@ -1,6 +1,6 @@
-export const getUniqueColors = (count) => {
+export const getUniqueColors = (count: number): string[] => {
     // Generate pastel colors using HSL, evenly spaced hues for complimentary effect
-    const pastelColors = [];
+    const pastelColors: string[] = [];
     const saturation = 70; // pastel saturation
     const lightness = 85; // pastel lightness
     for (let i = 0; i < count; i++) {
