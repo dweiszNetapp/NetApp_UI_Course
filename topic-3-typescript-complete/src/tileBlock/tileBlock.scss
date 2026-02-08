@@ -1,0 +1,35 @@
+.tileBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    border: 1px solid gray;
+    border-width: 0 1px 1px 0;
+    width: calc(100% / 4);
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+
+    &.opened {
+        pointer-events: none;
+
+        .tileShutter {
+            height: 0;
+        }
+    }
+
+    .tileShutter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: lightgray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: height 0.3s ease;
+    }
+}
