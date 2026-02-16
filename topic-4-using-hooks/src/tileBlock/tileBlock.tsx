@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 import './tileBlock.scss';
 
 interface TileBlockProps {
@@ -9,7 +9,6 @@ interface TileBlockProps {
 }
 
 const TileBlock = ({ id, children, color, onTileClick }: TileBlockProps) => {
-
     return (
         <div className="tileBlock" onClick={() => onTileClick(id)} id={id}>
             <div className="memoryTileContent">{children}</div>
