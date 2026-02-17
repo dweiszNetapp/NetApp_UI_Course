@@ -10,44 +10,6 @@ body {
   height: 100vh;
   font-family: Helvetica;
 
-  .memoryTitleBar {
-    display: flex;
-    width: 100%;
-    border-bottom: 1px solid gray;
-    padding: 10px 30px;
-    box-sizing: border-box;
-    justify-content: space-between;
-    align-items: center;
-
-    .leftSection {
-      display: flex;
-      gap: 50px;
-
-      .leftSectionItem {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 8px;
-
-        .difficultyLevel {
-          padding: 0;
-        }
-      }
-
-      .youWon {
-        display: flex;
-        align-items: center;
-        font-size: 45px;
-        color: green;
-      }
-    }
-
-    .resetButton {
-      cursor: pointer;
-      height: 40px;
-    }
-  }
-
   .memoryMainContent {
     display: flex;
     width: 100%;

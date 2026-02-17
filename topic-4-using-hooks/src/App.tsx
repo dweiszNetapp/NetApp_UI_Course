@@ -1,62 +1,66 @@
 import './App.scss';
 import './App-vp.scss';
-import { ReactComponent as MemoryIcon } from './assets/memoryApp.svg';
-import TileBlock from './tileBlock/tileBlock';
+import TileBlock, { type TileBlockProps } from './tileBlock/tileBlock';
 import { getPairedNumbers } from './utils/numbersUtil';
 import { getUniqueColors } from './utils/colorUtil';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [numberOfTiles, setNumberOfTiles] = useState(6);
+  const [numberOfTiles, setNumberOfTiles] = useState(4);
+  const [tiles, setTiles] = useState<TileBlockProps[]>([]);
 
   const openShutter = (value: string) => {
     const tile = document.getElementById(value);
     tile!.classList.add('opened');
   }
 
+  useEffect(() => {
+    setTiles([]);
+
+    for (let i = 0; i < numberOfTiles; i++) {
+      setTiles(prevTiles => {
+        return [...prevTiles, {
+          id: i.toString(),
+          onTileClick: (value) => openShutter(value),
+          color: getUniqueColors(numberOfTiles)[i],
+          value: getPairedNumbers(numberOfTiles)[i].toString()
+        }]
+      });
+    }
+  }, [numberOfTiles])
+
   /**
   * Task: Use getPairedNumbers and getUniqueColors to generate tiles dynamically
   */
-  const generateTiles = () => {
-    const tiles = [];
+  // const generateTiles = () => {
+  //   const tiles = [];
 
-    const numbers = getPairedNumbers(numberOfTiles);
-    const colors = getUniqueColors(numberOfTiles);
+  //   const numbers = getPairedNumbers(numberOfTiles);
+  //   const colors = getUniqueColors(numberOfTiles);
 
-    for (let i = 0; i < numberOfTiles; i++) {
-      tiles.push(<TileBlock
-        key={i}
-        onTileClick={(value) => openShutter(value)}
-        id={i.toString()}
-        color={colors[i]}>
-        <div>{numbers[i]}</div>
-      </TileBlock>);
-    }
+  //   for (let i = 0; i < numberOfTiles; i++) {
+  //     tiles.push(<TileBlock
+  //       key={i}
+  //       onTileClick={(value) => openShutter(value)}
+  //       id={i.toString()}
+  //       color={colors[i]}>
+  //       <div>{numbers[i]}</div>
+  //     </TileBlock>);
+  //   }
 
-    return tiles;
-  }
+  //   return tiles;
+  // }
 
   return (
     <div className='memoryAppContainer'>
-      <div className="memoryTitleBar">
-        <div className='leftSection'>
-          <MemoryIcon className='memoryIcon' />
-          <div className='leftSectionItem'>
-            <div className='sectionTitle'>Difficulty level:</div>
-            <input type='number' min={4} max={100} step={2} value={numberOfTiles} onChange={(event) => {
-              const value = event.target.value;
-              setNumberOfTiles(parseInt(value));
-            }} className='difficultyLevel' />
-          </div>
-          <div className='leftSectionItem'>
-            <div className='sectionTitle'>Best score: N/A</div>
-            <div className='numMistakes'>Number of mistakes: N/A</div>
-          </div>
-        </div>
-        <button className='resetButton' onClick={() => { }}>Reset game</button>
-      </div>
+
       <div className="memoryMainContent">
-        {generateTiles()}
+        {tiles.map(tile => <TileBlock
+          key={tile.id}
+          color={tile.color}
+          onTileClick={tile.onTileClick}
+          id={tile.id}
+          value={tile.value} />)}
       </div>
     </div>
   )
